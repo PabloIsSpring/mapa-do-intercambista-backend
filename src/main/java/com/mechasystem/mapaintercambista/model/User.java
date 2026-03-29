@@ -26,10 +26,10 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String nome;
+    @Column(nullable = false)
     private String password;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Builder.Default
@@ -37,11 +37,6 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @Override
-    public @Nullable String getPassword() {
-        return "";
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
