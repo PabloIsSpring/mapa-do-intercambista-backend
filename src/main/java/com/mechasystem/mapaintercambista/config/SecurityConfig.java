@@ -33,7 +33,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/registeruser").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register/intercambista").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register/agencia").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
