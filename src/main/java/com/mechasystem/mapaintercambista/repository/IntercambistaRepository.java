@@ -11,4 +11,5 @@ import java.util.UUID;
 public interface IntercambistaRepository extends JpaRepository<Intercambista, UUID> {
 
     public Optional<Intercambista> findByUsername(String username);
+
 }
