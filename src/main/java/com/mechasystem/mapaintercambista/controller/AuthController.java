@@ -4,6 +4,7 @@ import com.mechasystem.mapaintercambista.dto.request.LoginRequest;
 import com.mechasystem.mapaintercambista.dto.request.RegisterUserRequest;
 import com.mechasystem.mapaintercambista.dto.response.LoginResponse;
 import com.mechasystem.mapaintercambista.dto.response.RegisterUserResponse;
+import com.mechasystem.mapaintercambista.enums.Role;
 import com.mechasystem.mapaintercambista.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -31,8 +32,13 @@ public class AuthController {
         return ResponseEntity.ok(userService.login(request));
     }
 
-    @PostMapping("/registeruser")
-    public ResponseEntity<RegisterUserResponse> registerUser (@Valid @RequestBody RegisterUserRequest request) {
+    @PostMapping("/register/intercambista")
+    public ResponseEntity<RegisterUserResponse> registerIntercambista (@Valid @RequestBody RegisterUserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerUser(request));
+    }
+
+    @PostMapping("/register/agencia")
+    public ResponseEntity<RegisterUserResponse> registerAgencia (@Valid @RequestBody RegisterUserRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerAgencia(request));
     }
 }
