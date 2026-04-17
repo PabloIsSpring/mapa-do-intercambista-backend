@@ -19,7 +19,7 @@ public class Intercambista {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", nullable = false, unique = true)
     private User user;
 
