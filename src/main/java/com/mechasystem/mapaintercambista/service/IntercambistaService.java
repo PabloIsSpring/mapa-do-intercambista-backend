@@ -3,11 +3,11 @@ package com.mechasystem.mapaintercambista.service;
 import com.mechasystem.mapaintercambista.dto.request.IntercambistaUpdtRequest;
 import com.mechasystem.mapaintercambista.dto.request.RegisterUserRequest;
 import com.mechasystem.mapaintercambista.dto.response.IntercambistaResponse;
+import com.mechasystem.mapaintercambista.exception.ConflictException;
+import com.mechasystem.mapaintercambista.exception.NotFoundException;
 import com.mechasystem.mapaintercambista.model.Intercambista;
 import com.mechasystem.mapaintercambista.model.User;
 import com.mechasystem.mapaintercambista.repository.IntercambistaRepository;
-import jakarta.persistence.EntityExistsException;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +24,7 @@ public class IntercambistaService {
 
     private Intercambista findByUsername(String username) {
         return intercambistaRepository.findByUsername(username).
-                orElseThrow(() -> new EntityNotFoundException("Não foi encontrado usuário com esse nome"));
-    }
-
-    private IntercambistaResponse mapperEntity(Intercambista i) {
-        return new IntercambistaResponse(
-                i.getUsername(),
-                i.getNome(),
-                i.getIdade()
-        );
+                orElseThrow(() -> new NotFoundException("Não foi encontrado usuário com esse nome"));
     }
 
     public IntercambistaResponse getIntecambistaByUsername (String username) {
@@ -43,7 +35,7 @@ public class IntercambistaService {
 
     public IntercambistaResponse saveIntercambista(RegisterUserRequest request, User u) {
         if(intercambistaRepository.findByUsername(request.username()).isPresent()) {
-            throw new RuntimeException("Username já está em uso");
+            throw new ConflictException("Username já está em uso");
         }
 
         Intercambista nInt = new Intercambista();
@@ -61,7 +53,7 @@ public class IntercambistaService {
     public IntercambistaResponse updateUsername(IntercambistaUpdtRequest u) {
         Intercambista nInt = findByUsername(u.username());
         if(intercambistaRepository.findByUsername(u.nUsername()).isPresent()) {
-            throw new EntityExistsException("Username já está em uso");
+            throw new ConflictException("Username já está em uso");
         }
 
         nInt.setUsername(u.nUsername());
@@ -78,5 +70,13 @@ public class IntercambistaService {
         i.getUser().setDeletedAt(LocalDate.now());
 
         intercambistaRepository.save(i);
+    }
+
+    private IntercambistaResponse mapperEntity(Intercambista i) {
+        return new IntercambistaResponse(
+                i.getUsername(),
+                i.getNome(),
+                i.getIdade()
+        );
     }
 }
