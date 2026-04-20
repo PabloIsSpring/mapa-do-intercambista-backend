@@ -7,6 +7,7 @@ import com.mechasystem.mapaintercambista.dto.response.IntercambistaResponse;
 import com.mechasystem.mapaintercambista.dto.response.LoginResponse;
 import com.mechasystem.mapaintercambista.dto.response.RegisterUserResponse;
 import com.mechasystem.mapaintercambista.enums.Role;
+import com.mechasystem.mapaintercambista.exception.ConflictException;
 import com.mechasystem.mapaintercambista.model.Intercambista;
 import com.mechasystem.mapaintercambista.model.User;
 import com.mechasystem.mapaintercambista.repository.IntercambistaRepository;
@@ -53,7 +54,7 @@ public class UserService {
     @Transactional
     public RegisterUserResponse registerUser(RegisterUserRequest request) {
         if(userRepository.findUserByEmail(request.email()).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "E-mail já está em uso");
+            throw new ConflictException("E-mail já está em uso");
         }
 
         User nUser = new User();
