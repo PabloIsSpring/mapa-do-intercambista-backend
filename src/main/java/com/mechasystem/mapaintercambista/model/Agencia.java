@@ -25,7 +25,7 @@ public class Agencia {
     @JoinColumn(name = "id_user", nullable = false, unique = true)
     private User user;
 
-    private String razãoSocial;
+    private String razaoSocial;
     private String nomeFantasia;
     private String username;
     private String cnpj;

@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface AgenciaRepository extends JpaRepository<Agencia, UUID> {
 
     public Optional<Agencia> findAgenciaByUsername (String username);
+
+    public Optional<Agencia> findAgenciaByCnpjOrRazaoSocialOrUsername(String cnpj, String razaoSocial, String username);
 }
