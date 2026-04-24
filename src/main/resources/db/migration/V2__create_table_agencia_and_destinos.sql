@@ -12,7 +12,8 @@ CREATE TABLE paises (
     id CHAR(2) PRIMARY KEY,
     nome VARCHAR(100),
     idioma_principal VARCHAR(30) NOT NULL,
-    moeda VARCHAR(30)
+    moeda VARCHAR(30),
+    deleted_at DATE
 );
 
 CREATE TABLE destinos (
@@ -22,6 +23,7 @@ CREATE TABLE destinos (
     cidade VARCHAR(60) NOT NULL,
     universidade VARCHAR(60) NOT NULL,
     descricao TEXT,
+    deleted_at DATE,
     FOREIGN KEY (id_agencia) REFERENCES agencias(id),
     FOREIGN KEY (id_pais) REFERENCES paises(id)
 );
