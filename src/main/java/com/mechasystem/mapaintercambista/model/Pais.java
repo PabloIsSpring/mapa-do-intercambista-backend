@@ -23,7 +23,9 @@ public class Pais {
     private UUID id;
 
     private String nome;
-    private String idioma;
+
+    @Column(name="idioma_principal")
+    private String idiomaPrincipal;
     private String moeda;
 
     @Column(name = "deleted_at")
