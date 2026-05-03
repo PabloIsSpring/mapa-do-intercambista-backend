@@ -5,6 +5,7 @@ CREATE TABLE agencias (
     nome_fantasia VARCHAR (255),
     username VARCHAR(255) UNIQUE,
     cnpj VARCHAR(18) UNIQUE,
+    deleted_at DATE,
     FOREIGN KEY (id_user) REFERENCES users(id)
 );
 
