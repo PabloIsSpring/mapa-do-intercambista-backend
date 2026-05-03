@@ -61,7 +61,7 @@ public class PaisService {
         paisRepository.save(p);
     }
 
-    private PaisResponse mapperPaisResponse (Pais p) {
+    public PaisResponse mapperPaisResponse (Pais p) {
         return new PaisResponse(
                 p.getId(),
                 p.getNome(),
@@ -70,7 +70,7 @@ public class PaisService {
         );
     }
 
-    private Pais findPaisById (UUID id) {
+    public Pais findPaisById (UUID id) {
         return paisRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Esse id: "+ id +" não existe"));
     }

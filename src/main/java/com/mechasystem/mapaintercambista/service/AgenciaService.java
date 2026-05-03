@@ -75,12 +75,12 @@ public class AgenciaService {
         return mapperAgenciaResponse(a);
     }
 
-    private Agencia findAgenciaByUsername(String username) {
+    public Agencia findAgenciaByUsername(String username) {
         return agenciaRepository.findAgenciaByUsername(username)
                 .orElseThrow(() -> new NotFoundException("Esse username de Agência não existe"));
     }
 
-    private AgenciaResponse mapperAgenciaResponse (Agencia a) {
+    public AgenciaResponse mapperAgenciaResponse (Agencia a) {
         return new AgenciaResponse(
                 a.getUser().getEmail(),
                 a.getNomeFantasia(),
