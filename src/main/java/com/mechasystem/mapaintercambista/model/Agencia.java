@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,6 +25,9 @@ public class Agencia {
     @OneToOne
     @JoinColumn(name = "id_user", nullable = false, unique = true)
     private User user;
+
+    @OneToMany(mappedBy = "agencia")
+    private List<Destino> destinos;
 
     private String razaoSocial;
     private String nomeFantasia;

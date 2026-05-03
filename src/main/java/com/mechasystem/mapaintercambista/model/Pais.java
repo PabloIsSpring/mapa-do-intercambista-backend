@@ -1,12 +1,10 @@
 package com.mechasystem.mapaintercambista.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -31,4 +29,7 @@ public class Pais {
     @Column(name = "deleted_at")
     @Builder.Default
     private LocalDate deletedAt = null;
+
+    @OneToMany(mappedBy = "pais")
+    private List<Destino> destinos;
 }
