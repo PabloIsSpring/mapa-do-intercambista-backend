@@ -67,7 +67,12 @@ public class AgenciaService {
     }
 
     public AgenciaResponse getAgenciaByUsername (String username) {
-        return mapperAgenciaResponse(findAgenciaByUsername(username));
+        Agencia a = findAgenciaByUsername(username);
+        if (a.getDeletedAt() != null) {
+            throw new NotFoundException("Essa agência não existe");
+        }
+
+        return mapperAgenciaResponse(a);
     }
 
     private Agencia findAgenciaByUsername(String username) {

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,4 +34,7 @@ public class Agencia {
     private String nomeFantasia;
     private String username;
     private String cnpj;
+
+    @Column(name = "deleted_at")
+    private LocalDate deletedAt;
 }
