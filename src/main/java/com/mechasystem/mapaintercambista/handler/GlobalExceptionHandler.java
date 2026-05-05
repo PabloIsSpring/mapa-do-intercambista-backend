@@ -1,6 +1,7 @@
 package com.mechasystem.mapaintercambista.handler;
 
 import com.mechasystem.mapaintercambista.exception.ConflictException;
+import com.mechasystem.mapaintercambista.exception.CurtidaNegativaException;
 import com.mechasystem.mapaintercambista.exception.NotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,18 @@ public class GlobalExceptionHandler {
         ErrorResponse err = mapperErrorResponse(
                 409,
                 "Conflito no banco",
+                ex.getMessage(),
+                r.getRequestURI()
+        );
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(err);
+    }
+
+    @ExceptionHandler(CurtidaNegativaException.class)
+    public ResponseEntity<ErrorResponse> handleCurtidaNegativa(CurtidaNegativaException ex, HttpServletRequest r) {
+        ErrorResponse err = mapperErrorResponse(
+                409,
+                "Impossível descurtir esse post",
                 ex.getMessage(),
                 r.getRequestURI()
         );
