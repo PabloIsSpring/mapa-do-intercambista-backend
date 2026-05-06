@@ -25,7 +25,7 @@ CREATE TABLE destinos (
     universidade VARCHAR(60) NOT NULL,
     descricao TEXT,
     curtidas INT,
-    preco (10, 2),
+    preco DECIMAL(10, 2),
     deleted_at DATE,
     FOREIGN KEY (id_agencia) REFERENCES agencias(id),
     FOREIGN KEY (id_pais) REFERENCES paises(id)
