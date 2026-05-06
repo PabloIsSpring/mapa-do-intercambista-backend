@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Pais {
 
     @Id
-    private UUID id;
+    private String id;
 
     private String nome;
 

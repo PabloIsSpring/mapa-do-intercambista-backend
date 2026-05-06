@@ -3,6 +3,7 @@ package com.mechasystem.mapaintercambista.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public class Destino {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "id_agencia")
@@ -32,6 +33,7 @@ public class Destino {
     private String cidade;
     private String universidade;
     private String descricao;
+    private BigDecimal preco;
 
     @Builder.Default
     private int curtidas = 0;
