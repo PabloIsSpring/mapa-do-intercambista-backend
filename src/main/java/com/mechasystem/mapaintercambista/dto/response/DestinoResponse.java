@@ -1,11 +1,12 @@
 package com.mechasystem.mapaintercambista.dto.response;
 
-import java.util.UUID;
+import java.math.BigDecimal;
 
 public record DestinoResponse (
-        UUID id,
+        String id,
         String cidade,
         String universidade,
+        BigDecimal preco,
         AgenciaResponse agenciaResponse,
         PaisResponse paisResponse,
         String descricao
