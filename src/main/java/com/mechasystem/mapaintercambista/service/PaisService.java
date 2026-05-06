@@ -35,7 +35,7 @@ public class PaisService {
         return mapperPaisResponse(paisRepository.save(p));
     }
 
-    public PaisResponse getPaisById (UUID id) {
+    public PaisResponse getPaisById (String id) {
         Pais p = findPaisById(id);
         if(p.getDeletedAt() != null) {
             throw new NotFoundException("Esse país não existe");
@@ -53,7 +53,7 @@ public class PaisService {
         return mapperPaisResponse(p);
     }
 
-    public void deletePaisById (UUID id) {
+    public void deletePaisById (String id) {
         Pais p = findPaisById(id);
 
         p.setDeletedAt(LocalDate.now());
@@ -70,7 +70,7 @@ public class PaisService {
         );
     }
 
-    public Pais findPaisById (UUID id) {
+    public Pais findPaisById (String id) {
         return paisRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Esse id: "+ id +" não existe"));
     }
