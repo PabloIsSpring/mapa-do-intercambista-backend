@@ -43,10 +43,12 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${DATABASE_NAME}
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      TOKEN_SECRET: ${TOKEN_SECRET}
 
   nginx:
     image: nginx:latest
     container_name: nginx
+    restart: always
     ports:
       - "80:80"
       - "443:443"
@@ -55,7 +57,9 @@ services:
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
     depends_on:
-      - api
+      api:
+        condition: service_started
+
 
   certbot:
     image: certbot/certbot
