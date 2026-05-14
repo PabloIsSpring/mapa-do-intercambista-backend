@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Validated
 @RestController
@@ -18,6 +19,12 @@ public class IntercambistaController {
 
     public IntercambistaController (IntercambistaService intercambistaService) {
         this.intercambistaService = intercambistaService;
+    }
+
+    @PostMapping("/{username}/foto")
+    public ResponseEntity<IntercambistaResponse> uploadFotoPerfil (@PathVariable String username
+                                                                    ,@RequestParam("imagem")MultipartFile imagem) {
+        return ResponseEntity.ok(intercambistaService.uploadFotoPerfil(username, imagem));
     }
 
     @GetMapping("/{username}")

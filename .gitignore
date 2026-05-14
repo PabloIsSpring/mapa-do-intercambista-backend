@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .env
+uploads/
+docker-compose-local.yml
+nginx/default.local.conf
 
 ### STS ###
 .apt_generated

@@ -23,8 +23,11 @@ public class Intercambista {
     @JoinColumn(name = "id_user", nullable = false, unique = true)
     private User user;
 
-    @Column(unique = true  )
+    @Column(unique = true)
     private String username;
+
+    @Column(name = "url_foto_perfil")
+    private String urlFotoPerfil;
 
     private String nome;
     private String sobrenome;

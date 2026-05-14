@@ -2,6 +2,7 @@ target/
 .git/
 .idea/
 .vscode/
+uploads/
 
 Dockerfile
 docker-compose.yml

@@ -12,6 +12,7 @@ CREATE TABLE intercambistas (
     nome VARCHAR(255),
     sobrenome VARCHAR(255),
     username VARCHAR(255) UNIQUE,
+    url_foto_perfil VARCHAR (255),
     idade int,
     FOREIGN KEY (id_user) REFERENCES users(id)
 );
