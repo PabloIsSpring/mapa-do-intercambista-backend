@@ -6,7 +6,6 @@ import com.mechasystem.mapaintercambista.dto.request.RegisterUserRequest;
 import com.mechasystem.mapaintercambista.dto.response.AgenciaResponse;
 import com.mechasystem.mapaintercambista.dto.response.LoginResponse;
 import com.mechasystem.mapaintercambista.dto.response.RegisterUserResponse;
-import com.mechasystem.mapaintercambista.enums.Role;
 import com.mechasystem.mapaintercambista.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
