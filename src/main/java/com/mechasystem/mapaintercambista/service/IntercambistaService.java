@@ -91,7 +91,7 @@ public class IntercambistaService {
                     StandardCopyOption.REPLACE_EXISTING
             );
 
-            String urlFotoPerfil = "/uploads/intercambistas/" + nomeNovoArquivo;
+            String urlFotoPerfil = "/uploads/intercambista/" + nomeNovoArquivo;
 
             i.setUrlFotoPerfil(urlFotoPerfil);
             return mapperEntity(intercambistaRepository.save(i));
