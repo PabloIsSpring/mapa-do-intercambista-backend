@@ -2,6 +2,7 @@ package com.mechasystem.mapaintercambista.handler;
 
 import com.mechasystem.mapaintercambista.exception.ConflictException;
 import com.mechasystem.mapaintercambista.exception.CurtidaNegativaException;
+import com.mechasystem.mapaintercambista.exception.NotFileTypeException;
 import com.mechasystem.mapaintercambista.exception.NotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,18 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(err);
+    }
+
+    @ExceptionHandler(NotFileTypeException.class)
+    public ResponseEntity<ErrorResponse> handleTipoDeArquivoInvalido(NotFileTypeException ex, HttpServletRequest r) {
+        ErrorResponse err = mapperErrorResponse(
+                400,
+                "Esse tipo de arquivo não é permitido.",
+                ex.getMessage(),
+                r.getRequestURI()
+        );
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
 
     @ExceptionHandler(CurtidaNegativaException.class)
