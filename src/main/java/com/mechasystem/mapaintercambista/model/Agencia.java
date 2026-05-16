@@ -30,6 +30,9 @@ public class Agencia {
     @OneToMany(mappedBy = "agencia")
     private List<Destino> destinos;
 
+    @Column(name = "url_foto_agencia")
+    private String urlFotoAgencia;
+
     private String razaoSocial;
     private String nomeFantasia;
     private String username;

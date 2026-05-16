@@ -5,6 +5,7 @@ public record AgenciaResponse(
         String nomeFantasia,
         String cnpj,
         String username,
-        String razaoSocial
+        String razaoSocial,
+        String urlFotoPerfil
 ) {
 }

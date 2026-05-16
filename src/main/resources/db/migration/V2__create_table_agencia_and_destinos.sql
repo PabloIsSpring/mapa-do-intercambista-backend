@@ -3,6 +3,7 @@ CREATE TABLE agencias (
     id_user CHAR(36) NOT NULL UNIQUE,
     razao_social VARCHAR(255) UNIQUE,
     nome_fantasia VARCHAR (255),
+    url_foto_agencia VARCHAR (255),
     username VARCHAR(255) UNIQUE,
     cnpj VARCHAR(18) UNIQUE,
     deleted_at DATE,
