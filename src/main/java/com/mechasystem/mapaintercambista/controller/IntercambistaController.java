@@ -23,7 +23,7 @@ public class IntercambistaController {
 
     @PostMapping("/{username}/foto")
     public ResponseEntity<IntercambistaResponse> uploadFotoPerfil (@PathVariable String username
-                                                                    ,@RequestParam("imagem")MultipartFile imagem) {
+                                                                    ,@RequestParam("image")MultipartFile imagem) {
         return ResponseEntity.ok(intercambistaService.uploadFotoPerfil(username, imagem));
     }
 
