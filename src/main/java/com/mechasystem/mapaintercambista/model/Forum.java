@@ -25,6 +25,7 @@ public class Forum {
     private Intercambista intercambista;
 
     private String titulo;
+    private String comentario;
 
     @Builder.Default
     private Integer likes = 0;
