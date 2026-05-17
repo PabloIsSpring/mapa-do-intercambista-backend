@@ -19,12 +19,14 @@ public class DestinoService {
     private final DestinoRepository destinoRepository;
     private final PaisService paisService;
     private final AgenciaService agenciaService;
+    private final ImagenService imagenService;
 
     public DestinoService (DestinoRepository destinoRepository, PaisService paisService,
-                           AgenciaService agenciaService) {
+                           AgenciaService agenciaService, ImagenService imagenService) {
         this.destinoRepository = destinoRepository;
         this.paisService = paisService;
         this.agenciaService = agenciaService;
+        this.imagenService = imagenService;
     }
 
     public void curtirDestino (UUID id) {
@@ -47,6 +49,9 @@ public class DestinoService {
     public DestinoResponse saveDestino (CreateDestinoRequest req) {
         Agencia a = agenciaService.findAgenciaByUsername(req.usernameAgencia());
         Pais p = paisService.findPaisById(req.idPais());
+
+        String urlFoto = imagenService.salvarImagem(req.image(), "destinos");
+
         Destino d = new Destino();
 
         d.setAgencia(a);
@@ -55,6 +60,11 @@ public class DestinoService {
         d.setUniversidade(req.universidade());
         d.setDescricao(req.descricao());
         d.setPreco(req.preco());
+
+        d.setUrlFotoDestinos(urlFoto);
+        d.setDuracao(req.duracao());
+        d.setTipoDuracao(req.tipoDuracao());
+        d.setTipoDuracao(req.tipoIntercambio());
 
         return mapperDestinoResponse(destinoRepository.save(d));
     }
@@ -114,9 +124,14 @@ public class DestinoService {
                 d.getCidade(),
                 d.getUniversidade(),
                 d.getPreco(),
+                d.getUrlFotoDestinos(),
+                d.getDuracao(),
+                d.getTipoIntercambio(),
+                d.getTipoDuracao(),
                 agenciaService.mapperAgenciaResponse(d.getAgencia()),
                 paisService.mapperPaisResponse(d.getPais()),
-                d.getDescricao()
+                d.getDescricao(),
+                d.getDeletedAt()
         );
     }
 }

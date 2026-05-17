@@ -3,6 +3,8 @@ package com.mechasystem.mapaintercambista.controller;
 import com.mechasystem.mapaintercambista.dto.request.CreateDestinoRequest;
 import com.mechasystem.mapaintercambista.dto.response.DestinoResponse;
 import com.mechasystem.mapaintercambista.service.DestinoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +21,12 @@ public class DestinoController {
         this.destinoService = destinoService;
     }
 
-    @PostMapping
-    public ResponseEntity<DestinoResponse> saveDestino(@RequestBody CreateDestinoRequest req) {
-        return ResponseEntity.ok(destinoService.saveDestino(req));
+    @PostMapping(
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    public ResponseEntity<DestinoResponse> saveDestino(@ModelAttribute CreateDestinoRequest req) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(destinoService.saveDestino(req));
     }
 
     @GetMapping
@@ -34,17 +39,17 @@ public class DestinoController {
         return ResponseEntity.ok(destinoService.getDestinoById(id));
     }
 
-    @GetMapping("/{idPais}")
+    @GetMapping("/pais/{idPais}")
     public ResponseEntity<List<DestinoResponse>> getDestinosByPais(@PathVariable String idPais) {
         return ResponseEntity.ok(destinoService.getDestinosByPaisId(idPais));
     }
 
-    @GetMapping("/{agenciaUsername}")
+    @GetMapping("/agencia/{agenciaUsername}")
     public ResponseEntity<List<DestinoResponse>> getDestinoByAgencia(@PathVariable String agenciaUsername) {
         return ResponseEntity.ok(destinoService.getDestinoByAgenciaUsername(agenciaUsername));
     }
 
-    @GetMapping("/{cidade}")
+    @GetMapping("/cidade/{cidade}")
     public ResponseEntity<List<DestinoResponse>> getDestinoByCidade(@PathVariable String cidade) {
         return ResponseEntity.ok(destinoService.getDestinosByCidade(cidade));
     }

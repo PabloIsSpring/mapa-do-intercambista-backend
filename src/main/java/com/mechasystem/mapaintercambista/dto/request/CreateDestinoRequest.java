@@ -12,6 +12,7 @@ public record CreateDestinoRequest(
         @NotBlank String tipoDuracao,
         @NotBlank String tipoIntercambio,
         @NotBlank String idPais,
+        @Positive int duracao,
 
         @NotNull
         @Positive

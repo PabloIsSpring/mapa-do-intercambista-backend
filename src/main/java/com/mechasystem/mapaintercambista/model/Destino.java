@@ -36,7 +36,7 @@ public class Destino {
     @Column(name = "url_foto_destino")
     private String urlFotoDestinos;
 
-    @Column(name = "tipo_intercambio")
+    @Column(name = "tipo_de_programa")
     private String tipoIntercambio;
 
     private int duracao;

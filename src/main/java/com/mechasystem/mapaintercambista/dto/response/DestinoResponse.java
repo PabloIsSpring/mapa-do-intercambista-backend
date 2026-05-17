@@ -1,6 +1,7 @@
 package com.mechasystem.mapaintercambista.dto.response;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public record DestinoResponse (
@@ -8,8 +9,13 @@ public record DestinoResponse (
         String cidade,
         String universidade,
         BigDecimal preco,
+        String urlFoto,
+        int duracao,
+        String tipoPrograma,
+        String tipoDuracao,
         AgenciaResponse agenciaResponse,
         PaisResponse paisResponse,
-        String descricao
+        String descricao,
+        LocalDate deleteAt
 ) {
 }
