@@ -30,6 +30,16 @@ public class Destino {
     @JoinColumn(name = "id_pais")
     private Pais pais;
 
+    @Column(name = "tipo_duracao")
+    private String tipoDuracao;
+
+    @Column(name = "url_foto_destino")
+    private String urlFotoDestinos;
+
+    @Column(name = "tipo_intercambio")
+    private String tipoIntercambio;
+
+    private int duracao;
     private String cidade;
     private String universidade;
     private String descricao;
