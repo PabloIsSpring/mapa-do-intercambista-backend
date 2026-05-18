@@ -27,6 +27,9 @@ public class Forum {
     private String titulo;
     private String comentario;
 
+    @Column(name = "url_foto")
+    private String urlFotoForum;
+
     @Builder.Default
     private Integer likes = 0;
 

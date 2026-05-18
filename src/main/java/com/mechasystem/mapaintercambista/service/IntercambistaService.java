@@ -33,7 +33,7 @@ public class IntercambistaService {
         this.intercambistaRepository = intercambistaRepository;
     }
 
-    private Intercambista findByUsername(String username) {
+    public Intercambista findByUsername(String username) {
         return intercambistaRepository.findByUsername(username).
                 orElseThrow(() -> new NotFoundException("Não foi encontrado usuário com esse nome"));
     }
@@ -122,7 +122,7 @@ public class IntercambistaService {
         intercambistaRepository.save(i);
     }
 
-    private IntercambistaResponse mapperEntity(Intercambista i) {
+    public IntercambistaResponse mapperEntity(Intercambista i) {
         return new IntercambistaResponse(
                 i.getUsername(),
                 i.getNome(),
