@@ -52,7 +52,7 @@ public class ForumService {
                 .toList();
     }
 
-    private Forum buscarForumAtivo(UUID id) {
+    public Forum buscarForumAtivo(UUID id) {
         return forumRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new NotFoundException("Fórum não encontrado"));
     }
