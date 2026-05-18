@@ -27,7 +27,7 @@ public class Forum {
     private String titulo;
     private String comentario;
 
-    @Column(name = "url_foto")
+    @Column(name = "url_foto_forum")
     private String urlFotoForum;
 
     @Builder.Default
