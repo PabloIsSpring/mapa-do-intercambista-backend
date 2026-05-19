@@ -3,6 +3,7 @@ package com.mechasystem.mapaintercambista.controller;
 import com.mechasystem.mapaintercambista.dto.request.CreateDestinoRequest;
 import com.mechasystem.mapaintercambista.dto.response.DestinoResponse;
 import com.mechasystem.mapaintercambista.service.DestinoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class DestinoController {
     @PostMapping(
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
-    public ResponseEntity<DestinoResponse> saveDestino(@ModelAttribute CreateDestinoRequest req) {
+    public ResponseEntity<DestinoResponse> saveDestino(@ModelAttribute @Valid CreateDestinoRequest req) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(destinoService.saveDestino(req));
     }

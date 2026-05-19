@@ -23,3 +23,18 @@ CREATE TABLE respostas (
     FOREIGN KEY (id_forum) REFERENCES foruns(id),
     FOREIGN KEY (id_intercambista) REFERENCES intercambistas(id)
 );
+
+CREATE TABLE avaliacoes (
+    id CHAR(36) PRIMARY KEY,
+    id_destino CHAR(36) NOT NULL,
+    id_intercambista CHAR(36) NOT NULL,
+    comentario TEXT,
+    nota DECIMAL(2, 1),
+    created_at DATETIME,
+    deleted_at DATETIME,
+
+    FOREIGN KEY (id_destino) REFERENCES destinos(id),
+    FOREIGN KEY (id_intercambista) REFERENCES intercambistas(id),
+
+    UNIQUE(id_intercambista, id_destino)
+);
