@@ -44,9 +44,20 @@ public class ForumController {
         return ResponseEntity.ok(forumService.curtirForum(id));
     }
 
+    @DeleteMapping("/{id}/like")
+    public ResponseEntity<ForumResponse> removerCurtirForum(@PathVariable UUID id) {
+        return ResponseEntity.ok(forumService.removerCurtirForum(id));
+    }
+
+
     @PutMapping("/{id}/deslike")
     public ResponseEntity<ForumResponse> descurtirForum(@PathVariable UUID id) {
         return ResponseEntity.ok(forumService.descurtirForum(id));
+    }
+
+    @DeleteMapping("/{id}/deslike")
+    public ResponseEntity<ForumResponse> removerDescurtirForum(@PathVariable UUID id) {
+        return ResponseEntity.ok(forumService.removerDescurtirForum(id));
     }
 
     @DeleteMapping("/{id}")

@@ -3,6 +3,7 @@ package com.mechasystem.mapaintercambista.service;
 
 import com.mechasystem.mapaintercambista.dto.request.CreateForumRequest;
 import com.mechasystem.mapaintercambista.dto.response.ForumResponse;
+import com.mechasystem.mapaintercambista.exception.ConflictException;
 import com.mechasystem.mapaintercambista.exception.NotFoundException;
 import com.mechasystem.mapaintercambista.model.Forum;
 import com.mechasystem.mapaintercambista.model.Intercambista;
@@ -68,6 +69,36 @@ public class ForumService {
         Forum forum = buscarForumAtivo(id);
 
         forum.setLikes(forum.getLikes() + 1);
+
+        Forum forumSalvo = forumRepository.save(forum);
+
+        return mapperForumResponse(forumSalvo);
+    }
+
+    @Transactional
+    public ForumResponse removerCurtirForum(UUID id) {
+        Forum forum = buscarForumAtivo(id);
+
+        if(forum.getLikes() >= 0) {
+            throw new ConflictException("Não está permitido remover curtida");
+        }
+
+        forum.setLikes(forum.getLikes() - 1);
+
+        Forum forumSalvo = forumRepository.save(forum);
+
+        return mapperForumResponse(forumSalvo);
+    }
+
+    @Transactional
+    public ForumResponse removerDescurtirForum(UUID id) {
+        Forum forum = buscarForumAtivo(id);
+
+        if(forum.getDislikes() >= 0) {
+            throw new ConflictException("Não está permitido descurtir");
+        }
+
+        forum.setDislikes(forum.getDislikes() - 1);
 
         Forum forumSalvo = forumRepository.save(forum);
 
