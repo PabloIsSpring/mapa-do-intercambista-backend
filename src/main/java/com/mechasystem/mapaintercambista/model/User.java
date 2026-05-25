@@ -3,7 +3,6 @@ package com.mechasystem.mapaintercambista.model;
 import com.mechasystem.mapaintercambista.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
-import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -33,9 +33,19 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                         .requestMatchers("/", "/index.html", "/assets/**").permitAll()
+
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register/intercambista").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register/agencia").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/agencia/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/foruns").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/foruns/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/pacotes").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/pacotes/**").permitAll()
+
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
