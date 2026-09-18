@@ -7,7 +7,8 @@ import java.util.UUID;
 public record AvaliacaoResponse(
         UUID id,
         DestinoResponse destino,
-        IntercambistaResponse intercambistaResponse,
+        String intercambistaUsername,
+        String intercambistaFoto,
         String comentario,
         BigDecimal nota,
         LocalDateTime createdAt

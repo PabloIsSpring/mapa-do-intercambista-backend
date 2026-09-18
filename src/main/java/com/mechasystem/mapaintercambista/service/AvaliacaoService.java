@@ -2,6 +2,7 @@ package com.mechasystem.mapaintercambista.service;
 
 import com.mechasystem.mapaintercambista.dto.request.CreateAvaliacaoRequest;
 import com.mechasystem.mapaintercambista.dto.response.AvaliacaoResponse;
+import com.mechasystem.mapaintercambista.dto.response.IntercambistaResponse;
 import com.mechasystem.mapaintercambista.exception.ConflictException;
 import com.mechasystem.mapaintercambista.exception.NotFoundException;
 import com.mechasystem.mapaintercambista.model.Avaliacao;
@@ -78,10 +79,13 @@ public class AvaliacaoService {
     }
 
     private AvaliacaoResponse mapperAvaliacaoResponse(Avaliacao avaliacao) {
+        IntercambistaResponse i = intercambistaService.mapperEntity(avaliacao.getIntercambista());
+
         return new AvaliacaoResponse(
                 avaliacao.getId(),
                 destinoService.mapperDestinoResponse(avaliacao.getDestino()),
-                intercambistaService.mapperEntity(avaliacao.getIntercambista()),
+                i.username(),
+                i.urlFotoPerfil(),
                 avaliacao.getComentario(),
                 avaliacao.getNota(),
                 avaliacao.getCreatedAt()
