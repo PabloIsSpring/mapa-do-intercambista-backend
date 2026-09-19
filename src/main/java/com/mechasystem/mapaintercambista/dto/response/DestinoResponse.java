@@ -14,8 +14,7 @@ public record DestinoResponse (
         String tipoPrograma,
         String tipoDuracao,
         AgenciaResponse agenciaResponse,
-        PaisResponse paisResponse,
-        String descricao,
-        LocalDate deleteAt
+        PaisResponse pais,
+        String descricao
 ) {
 }

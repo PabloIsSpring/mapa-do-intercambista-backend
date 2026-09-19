@@ -1,7 +1,9 @@
 package com.mechasystem.mapaintercambista.service;
 
 import com.mechasystem.mapaintercambista.dto.request.CreateDestinoRequest;
+import com.mechasystem.mapaintercambista.dto.response.AgenciaResponse;
 import com.mechasystem.mapaintercambista.dto.response.DestinoResponse;
+import com.mechasystem.mapaintercambista.dto.response.PaisResponse;
 import com.mechasystem.mapaintercambista.exception.NotFoundException;
 import com.mechasystem.mapaintercambista.model.Agencia;
 import com.mechasystem.mapaintercambista.model.Destino;
@@ -119,6 +121,9 @@ public class DestinoService {
     }
 
     public DestinoResponse mapperDestinoResponse (Destino d) {
+        AgenciaResponse a = agenciaService.mapperAgenciaResponse(d.getAgencia());
+        PaisResponse p = paisService.mapperPaisResponse(d.getPais());
+
         return new DestinoResponse(
                 d.getId(),
                 d.getCidade(),
@@ -128,10 +133,9 @@ public class DestinoService {
                 d.getDuracao(),
                 d.getTipoIntercambio(),
                 d.getTipoDuracao(),
-                agenciaService.mapperAgenciaResponse(d.getAgencia()),
-                paisService.mapperPaisResponse(d.getPais()),
-                d.getDescricao(),
-                d.getDeletedAt()
+                a,
+                p,
+                d.getDescricao()
         );
     }
 }
